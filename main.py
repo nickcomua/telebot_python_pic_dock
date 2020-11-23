@@ -69,7 +69,7 @@ print(items)
 a = {}
 ma = []
 token = "768083727:AAGifgRsDxB1ZY-4jkHPXd89Ag5fe_Zl87w"
-bot = telebot.TeleBot(token, num_threads=500)
+bot = telebot.TeleBot(token)
 erex_data = {}
 love_data = {}
 cat_data = {}
