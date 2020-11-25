@@ -159,31 +159,34 @@ def fun1():
 
 x = threading.Thread(target=fun1)
 x.start()
-
 while True:
-    for _ in range(10):
-        print("sth")
-        item = random.choice(items)
-        request = service.files().get_media(fileId=item['id'])
-        fh = io.FileIO('file.' + item['name'].split('.')[-1], 'wb')
-        downloader = MediaIoBaseDownload(fh, request)
-        done = False
-        while done is False:
-            status, done = downloader.next_chunk()
-            print("Download %d%%." % int(status.progress() * 100))
-        fh.close()
-        fh = io.FileIO('file.' + item['name'].split('.')[-1], 'rb')
-        # bot.send_message("-1001473134565", "123", disable_notification=True)
-        markup = types.InlineKeyboardMarkup()
-        markup.add(
-            types.InlineKeyboardButton('❤️', callback_data=f"{item['id']} {item['name']} 1 0"),
-            types.InlineKeyboardButton('💔', callback_data=f"{item['id']} {item['name']} 0 0"),
-            types.InlineKeyboardButton('😄', callback_data=f"{item['id']} {item['name']} 1 1"),
-            types.InlineKeyboardButton('😳', callback_data=f"{item['id']} {item['name']} 0 1"),
-            types.InlineKeyboardButton('No 😸', callback_data=f"{item['id']} {item['name']} 0 2"),
-            types.InlineKeyboardButton('😸', callback_data=f"{item['id']} {item['name']} 1 2"),
-            row_width=2
-        )
-        bot.send_photo("-1001473134565", fh, reply_markup=markup)
-        fh.close()
-    time.sleep(60 * 60 * 2)
+    try:
+        while True:
+            for _ in range(10):
+                print("sth")
+                item = random.choice(items)
+                request = service.files().get_media(fileId=item['id'])
+                fh = io.FileIO('file.' + item['name'].split('.')[-1], 'wb')
+                downloader = MediaIoBaseDownload(fh, request)
+                done = False
+                while done is False:
+                    status, done = downloader.next_chunk()
+                    print("Download %d%%." % int(status.progress() * 100))
+                fh.close()
+                fh = io.FileIO('file.' + item['name'].split('.')[-1], 'rb')
+                # bot.send_message("-1001473134565", "123", disable_notification=True)
+                markup = types.InlineKeyboardMarkup()
+                markup.add(
+                    types.InlineKeyboardButton('❤️', callback_data=f"{item['id']} {item['name']} 1 0"),
+                    types.InlineKeyboardButton('💔', callback_data=f"{item['id']} {item['name']} 0 0"),
+                    types.InlineKeyboardButton('😄', callback_data=f"{item['id']} {item['name']} 1 1"),
+                    types.InlineKeyboardButton('😳', callback_data=f"{item['id']} {item['name']} 0 1"),
+                    types.InlineKeyboardButton('No 😸', callback_data=f"{item['id']} {item['name']} 0 2"),
+                    types.InlineKeyboardButton('😸', callback_data=f"{item['id']} {item['name']} 1 2"),
+                    row_width=2
+                )
+                bot.send_photo("-1001473134565", fh, reply_markup=markup)
+                fh.close()
+            time.sleep(60 * 60 * 2)
+    except:
+        time.sleep(60 * 60 * 2)
