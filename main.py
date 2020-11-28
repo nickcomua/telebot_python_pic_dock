@@ -147,7 +147,7 @@ def fun1():
         bot.polling(none_stop=True, interval=0, timeout=0)
     except:
         time.sleep(10)
-        fun1()
+        x.start()
 
 
 print('0')
