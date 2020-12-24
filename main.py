@@ -195,6 +195,6 @@ while True:
             )
             bot.send_photo("-1001473134565", fh, reply_markup=markup)
             fh.close()
-        time.sleep(60 * 60 * 2)
+        time.sleep(60 * 60 * 24)
     except:
-        time.sleep(60 * 60 * 2)
+        time.sleep(60 * 60 * 12)
