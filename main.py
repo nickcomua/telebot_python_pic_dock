@@ -43,7 +43,7 @@ if not creds or not creds.valid:
 service = build('drive', 'v3', credentials=creds)
 
 # Call the Drive v3 API
-results = service.files().list(q="'1u8CwWx_kErN5aZ-S-5L1Q6fP92tJR7XI' in parents",
+results = service.files().list(q="'code' in parents",
                                spaces='drive', pageToken=None, pageSize=1000,
                                fields="nextPageToken, files(id, name)"
                                ).execute()
@@ -52,7 +52,7 @@ while True:
     pageToken = results.get('nextPageToken', None)
     if not pageToken:
         break
-    results = service.files().list(q="'1u8CwWx_kErN5aZ-S-5L1Q6fP92tJR7XI' in parents",
+    results = service.files().list(q="'code' in parents",
                                    spaces='drive', pageToken=pageToken, pageSize=1000,
                                    fields="nextPageToken, files(id, name)"
                                    ).execute()
@@ -61,7 +61,7 @@ while True:
 print('indexed')
 a = {}
 ma = []
-token = "768083727:AAGifgRsDxB1ZY-4jkHPXd89Ag5fe_Zl87w"
+token = "code"
 bot = telebot.TeleBot(token, num_threads=10)
 erex_data = {}
 love_data = {}
